@@ -14,9 +14,9 @@ pipeline {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
-    stage('Push') {
+    stage('Pull') {
       steps {
-        sh 'docker push dhub2000/padma-alpine:${BUILD_NUMBER}'
+        sh 'docker pull dhub2000/padma-alpine:${BUILD_NUMBER-1}'
       }
     }
   }
