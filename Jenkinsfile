@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t dhub2000/padma-alpine:latest .'
+        sh 'docker build -t dhub2000/padma-alpine:${BUILD_NUMBER} .'
       }
     }
     stage('Login') {
