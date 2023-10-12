@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh ''
+        sh 'docker push dhub2000/padma-alpine:latest'
       }
     }
   }
