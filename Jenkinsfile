@@ -1,31 +1,28 @@
 pipeline {
-  agent { label 'linux' }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
+  agent any
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('darinpope-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('padma-dockerhub')
   }
   stages {
     stage('Build') {
       steps {
-        sh './jenkins/build.sh'
+        sh 'docker build -t dhub2000/padma-alpine:latest .'
       }
     }
     stage('Login') {
       steps {
-        sh './jenkins/login.sh'
+        sh ''
       }
     }
     stage('Push') {
       steps {
-        sh './jenkins/push.sh'
+        sh ''
       }
     }
   }
   post {
     always {
-      sh './jenkins/logout.sh'
+      sh 'docker logout'
     }
   }
 }
